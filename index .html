@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!--
+    DOCTYPE: بيقول للمتصفح "الملف ده HTML5" عشان يعرضه صح.
+    ده لازم يكون أول سطر في أي ملف HTML.
+-->
+<html lang="ar" dir="rtl">
+<!--
+    lang="ar"  => بيقول للمتصفح إن لغة الصفحة عربي (مفيد لقارئ الشاشة ولمحركات البحث)
+    dir="rtl"  => Right To Left، يعني الصفحة تتصف من اليمين لليسار (لأننا عربي)
+-->
+
+<head>
+    <!-- الـ head مفيهوش حاجة تظهر على الشاشة، ده بس معلومات عن الصفحة -->
+
+    <meta charset="UTF-8">
+    <!-- charset=UTF-8 عشان الحروف العربية تظهر صح ومتبقاش رموز غريبة -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ده بيخلي الصفحة تتصف صح على الموبايل مش بس على الكمبيوتر -->
+
+    <title>مطعم الأصالة | مشويات ومندي</title>
+    <!-- العنوان ده اللي بيظهر فوق في تبويب المتصفح -->
+
+    <!-- خط Google Fonts هنستخدمه في كل الموقع -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- ملف الأيقونات (Font Awesome) عشان نستخدم أيقونات زي واتساب وفيسبوك -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- ملف الـ CSS بتاعنا -->
+    <link rel="stylesheet" href="style55.css">
+</head>
+
+<body>
+
+    <!-- ==========================================================
+         1) Header / Navbar
+         ------------------------------------------------------------
+         عنصر <header> بيمثل رأس الصفحة، وجواه <nav> اللي فيه روابط
+         التنقل بين أقسام الصفحة.
+         ========================================================== -->
+    <header class="header">
+        <div class="container header-inner">
+
+            <a href="#home" class="logo">مطعم <span>الأصالة</span></a>
+
+            <!-- زرار القائمة بتاع الموبايل (هامبرجر) - بيتفعّل بالـ JS -->
+            <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav" id="navMenu">
+                <li><a href="#home" class="active">الرئيسية</a></li>
+                <li><a href="#menu">المنيو</a></li>
+                <li><a href="#gallery">المعرض</a></li>
+                <li><a href="#booking">احجز طاولة</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+    <!-- ==========================================================
+         2) Home Section (Hero)
+         ------------------------------------------------------------
+         أول حاجة بيشوفها الزائر: صورة كبيرة + عنوان + زرارين.
+         ========================================================== -->
+    <section class="home" id="home">
+        <div class="overlay">
+            <div class="home-content">
+                <h1 class="title">مطعم الأصالة</h1>
+                <p class="subtitle">نكهة الشرق الأصيلة .. مشويات ومندي طازة كل يوم</p>
+
+                <div class="home-buttons">
+                    <a href="#menu" class="btn btn-primary">شاهد المنيو</a>
+                    <a href="#booking" class="btn btn-outline">احجز طاولتك</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================================
+         3) Menu Section
+         ------------------------------------------------------------
+         بنعرض الأصناف مقسّمة لفئات (مشويات - مندي - مقبلات).
+         كل صنف عبارة عن "كارت" فيه صورة، اسم، وصف، وسعر.
+         ========================================================== -->
+    <section class="menu pd-y" id="menu">
+        <div class="section-header">
+            <h2 class="section-title">المنيو</h2>
+            <span class="line"></span>
+            <p class="section-desc">أشهى الأطباق الشرقية بأيادي شيفاتنا</p>
+        </div>
+
+        <div class="container">
+
+            <!-- فئة: مشويات -->
+            <h3 class="menu-category">مشويات</h3>
+            <div class="menu-grid">
+
+                <div class="menu-item">
+                    <img src="image/mixed-grill.png" alt="مشاوي مشكلة" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h4>مشاوي مشكلة</h4>
+                            <span class="price">180 ج.م</span>
+                        </div>
+                        <p>كباب، كفتة، شيش طاووق مشوي على الفحم</p>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="image/shish-tawook.png" alt="شيش طاووق" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h4>شيش طاووق</h4>
+                            <span class="price">120 ج.م</span>
+                        </div>
+                        <p>قطع فراخ متبلة ومشوية مع الأرز</p>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="image/lamb-chops.png" alt="ريش ضاني" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h4>ريش ضاني</h4>
+                            <span class="price">220 ج.م</span>
+                        </div>
+                        <p>ريش ضاني طازة مشوية على الفحم</p>
+                    </div>
+                </div>
+
+            </div><!-- /.menu-grid -->
+
+            <!-- فئة: مندي -->
+            <h3 class="menu-category">مندي</h3>
+            <div class="menu-grid">
+
+                <div class="menu-item">
+                    <img src="image/mandi-chicken.png" alt="مندي فراخ" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h4>مندي فراخ</h4>
+                            <span class="price">140 ج.م</span>
+                        </div>
+                        <p>نص فرخة مع أرز المندي البخاري</p>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="image/mandi-lamb.png" alt="مندي لحم" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h4>مندي لحم</h4>
+                            <span class="price">190 ج.م</span>
+                        </div>
+                        <p>قطعة لحم ضاني مع أرز المندي</p>
+                    </div>
+                </div>
+
+            </div><!-- /.menu-grid -->
+
+            <!-- فئة: مقبلات -->
+            <h3 class="menu-category">مقبلات</h3>
+            <div class="menu-grid">
+
+                <div class="menu-item">
+                    <img src="image/hummus.png" alt="حمص" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h4>حمص بالطحينة</h4>
+                            <span class="price">35 ج.م</span>
+                        </div>
+                        <p>حمص طازة مع زيت زيتون وصنوبر</p>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="image/fattoush.png" alt="فتوش" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h4>سلطة فتوش</h4>
+                            <span class="price">40 ج.م</span>
+                        </div>
+                        <p>خضار طازة مع خبز محمص ودبس رمان</p>
+                    </div>
+                </div>
+
+            </div><!-- /.menu-grid -->
+
+        </div><!-- /.container -->
+    </section>
+
+
+    <!-- ==========================================================
+         4) Gallery Section
+         ------------------------------------------------------------
+         شبكة صور. لما تدوس على أي صورة، الـ JS بيفتحها بشكل
+         أكبر (Lightbox) في نافذة فوق الصفحة.
+         ========================================================== -->
+    <section class="gallery pd-y" id="gallery">
+        <div class="section-header">
+            <h2 class="section-title">المعرض</h2>
+            <span class="line"></span>
+            <p class="section-desc">لمحة من أجواء وأطباق المطعم</p>
+        </div>
+
+        <div class="container">
+            <div class="gallery-grid">
+                <img src="image/gallery-1.png" alt="صورة من المطعم" class="gallery-img">
+                <img src="image/gallery-2.png" alt="صورة من المطعم" class="gallery-img">
+                <img src="image/gallery-3.png" alt="صورة من المطعم" class="gallery-img">
+                <img src="image/gallery-4.png" alt="صورة من المطعم" class="gallery-img">
+                <img src="image/gallery-5.png" alt="صورة من المطعم" class="gallery-img">
+                <img src="image/gallery-6.png" alt="صورة من المطعم" class="gallery-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- نافذة الـ Lightbox: مخفية في البداية، الـ JS بيظهرها ويحط فيها الصورة -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img src="" alt="" id="lightboxImg">
+    </div>
+
+
+    <!-- ==========================================================
+         5) Booking Section (حجز طاولة)
+         ------------------------------------------------------------
+         فورم بيسأل عن الاسم، التليفون، التاريخ، الوقت، وعدد
+         الأفراد. الـ JS بيتأكد إن كل حقل متكتب صح قبل الإرسال.
+         ========================================================== -->
+    <section class="booking pd-y" id="booking">
+        <div class="section-header">
+            <h2 class="section-title">احجز طاولتك</h2>
+            <span class="line"></span>
+            <p class="section-desc">احجز مكانك دلوقتي وهنتواصل معاك للتأكيد</p>
+        </div>
+
+        <div class="container">
+            <form class="booking-form" id="bookingForm">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookingName">الاسم</label>
+                        <input type="text" id="bookingName" name="name" placeholder="اكتب اسمك">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingPhone">رقم التليفون</label>
+                        <input type="tel" id="bookingPhone" name="phone" placeholder="01xxxxxxxxx">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookingDate">التاريخ</label>
+                        <input type="date" id="bookingDate" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingTime">الوقت</label>
+                        <input type="time" id="bookingTime" name="time">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingGuests">عدد الأفراد</label>
+                        <input type="number" id="bookingGuests" name="guests" min="1" max="20" placeholder="مثال: 4">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bookingNotes">ملاحظات (اختياري)</label>
+                    <textarea id="bookingNotes" name="notes" rows="3" placeholder="أي طلب خاص؟"></textarea>
+                </div>
+
+                <p class="form-feedback" id="bookingFeedback"></p>
+
+                <button type="submit" class="btn btn-primary">تأكيد الحجز</button>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- ==========================================================
+         6) Contact Section
+         ------------------------------------------------------------
+         معلومات ثابتة: عنوان، تليفون، مواعيد العمل، سوشيال ميديا.
+         ========================================================== -->
+    <section class="contact pd-y" id="contact">
+        <div class="section-header">
+            <h2 class="section-title">تواصل معنا</h2>
+            <span class="line"></span>
+        </div>
+
+        <div class="container">
+            <div class="contact-grid">
+
+                <div class="contact-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4>العنوان</h4>
+                    <p>شارع النصر، المعادي، القاهرة</p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h4>التليفون</h4>
+                    <p dir="ltr">01000000000</p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fa-regular fa-clock"></i>
+                    <h4>مواعيد العمل</h4>
+                    <p>يوميًا من 1 ظهرًا حتى 1 صباحًا</p>
+                </div>
+
+            </div>
+
+            <div class="social-links">
+                <a href="#" aria-label="فيسبوك"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" aria-label="انستجرام"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================================
+         7) Footer
+         ========================================================== -->
+    <footer class="footer">
+        <p>© 2026 مطعم الأصالة. جميع الحقوق محفوظة.</p>
+    </footer>
+
+
+    <!-- ملف الجافاسكريبت بتاعنا. بنحطه في آخر الصفحة عشان يشتغل
+         بعد ما كل عناصر HTML تكون اتحملت. -->
+    <script src="script.js"></script>
+</body>
+
+</html>

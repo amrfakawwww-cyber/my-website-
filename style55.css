@@ -1,0 +1,519 @@
+/* ==========================================================================
+   مطعم الأصالة — style.css
+   ------------------------------------------------------------------------
+   الفهرس:
+     1. Reset & متغيرات الألوان (CSS Variables)
+     2. أدوات عامة (Utilities)
+     3. الهيدر والقائمة (Header / Nav)
+     4. قسم الرئيسية (Home)
+     5. قسم المنيو (Menu)
+     6. قسم المعرض + الـ Lightbox (Gallery)
+     7. قسم الحجز (Booking Form)
+     8. قسم التواصل (Contact)
+     9. الفوتر (Footer)
+    10. التجاوب مع الشاشات الصغيرة (Media Queries)
+   ========================================================================== */
+ 
+ 
+/* ==========================================================================
+   1. Reset & متغيرات الألوان
+   ------------------------------------------------------------------------
+   :root هو عنصر وهمي بيمثل كل الصفحة. بنحط فيه متغيرات (--اسم-اللون)
+   عشان لو حبينا نغيّر لون المطعم كله، نغيّره من مكان واحد بس هنا.
+   ========================================================================== */
+ 
+   :root {
+    --color-primary: #b8452e;   /* اللون الأساسي (طوبي/أحمر دافئ) */
+    --color-dark: #241713;      /* بني غامق جدًا يستخدم في الهيدر والفوتر */
+    --color-gold: #d9a441;      /* لون ذهبي للتفاصيل والأسعار */
+    --color-light: #faf6f1;     /* خلفية فاتحة (بيچ) للأقسام */
+    --color-text: #333333;      /* لون النص العادي */
+}
+ 
+* {
+    /* * معناها "كل العناصر". بنشيل الـ padding والـ margin الافتراضية
+       اللي بيحطها المتصفح، عشان نبدأ من صفر ونتحكم إحنا في المسافات. */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* عشان الـ padding متزودش عرض العنصر عن اللي حددناه */
+}
+ 
+body {
+    font-family: "Cairo", sans-serif;
+    color: var(--color-text);
+    line-height: 1.7;
+}
+ 
+img {
+    max-width: 100%; /* أي صورة متكبرش أكتر من العنصر اللي هي جواه */
+    display: block;
+}
+ 
+ 
+/* ==========================================================================
+   2. أدوات عامة (Utilities)
+   ------------------------------------------------------------------------
+   كلاسات بنستخدمها في أكتر من مكان في الصفحة.
+   ========================================================================== */
+ 
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto; /* auto من الشمال واليمين = العنصر يبقى في النص */
+}
+ 
+.pd-y {
+    padding: 90px 0; /* padding فوق وتحت بس */
+}
+ 
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+ 
+.section-title {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--color-dark);
+}
+ 
+.section-header .line {
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--color-gold);
+    margin: 15px auto;
+}
+ 
+.section-desc {
+    color: #777;
+}
+ 
+/* زرارين موحدين تستخدمهم في أي مكان في الموقع */
+.btn {
+    display: inline-block;
+    padding: 14px 34px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: inherit;
+    font-size: 1em;
+}
+ 
+.btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+}
+ 
+.btn-primary:hover {
+    background: #96341f;
+}
+ 
+.btn-outline {
+    background: transparent;
+    border-color: #fff;
+    color: #fff;
+}
+ 
+.btn-outline:hover {
+    background: #fff;
+    color: var(--color-dark);
+}
+ 
+ 
+/* ==========================================================================
+   3. الهيدر والقائمة (Header / Nav)
+   ========================================================================== */
+ 
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--color-dark);
+    z-index: 100;
+}
+ 
+.header-inner {
+    display: flex;              /* flex بيخلي العناصر جنب بعض في سطر واحد */
+    align-items: center;        /* بيوسّطهم رأسيًا */
+    justify-content: space-between; /* بيبعّد بينهم لأقصى درجة */
+    height: 80px;
+}
+ 
+.logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+}
+ 
+.logo span {
+    color: var(--color-gold);
+}
+ 
+.nav {
+    display: flex;
+    gap: 10px;
+    list-style: none; /* بيشيل النقطة اللي بتظهر جنب كل <li> */
+}
+ 
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 16px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+ 
+.nav a:hover,
+.nav a.active {
+    color: var(--color-gold);
+}
+ 
+/* زرار الهامبرجر (3 خطوط) - مخفي على الشاشات الكبيرة، هيظهر في الموبايل */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+ 
+.menu-toggle span {
+    width: 28px;
+    height: 3px;
+    background: #fff;
+}
+ 
+ 
+/* ==========================================================================
+   4. قسم الرئيسية (Home)
+   ========================================================================== */
+ 
+.home {
+    height: 100vh; /* 100vh = ارتفاع الشاشة بالكامل */
+    background-image: url(../image/hero.png);
+    background-size: cover;      /* الصورة تغطي المساحة كلها */
+    background-position: center;
+    position: relative;
+}
+ 
+.home .overlay {
+    position: absolute;
+    inset: 0; /* اختصار لـ top/left/right/bottom كلهم = 0 */
+    background: rgba(20, 12, 9, 0.65); /* طبقة غامقة شفافة فوق الصورة */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.home-content {
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+ 
+.home .title {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+ 
+.home .subtitle {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+ 
+.home-buttons .btn {
+    margin: 0 8px;
+}
+ 
+ 
+/* ==========================================================================
+   5. قسم المنيو (Menu)
+   ========================================================================== */
+ 
+.menu {
+    background: var(--color-light);
+}
+ 
+.menu-category {
+    font-size: 22px;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-gold);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin: 40px 0 20px 0;
+}
+ 
+.menu-category:first-of-type {
+    margin-top: 0;
+}
+ 
+.menu-grid {
+    /* grid بيقسّم المساحة لأعمدة بالعدد اللي إحنا حددناه */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة متساوية */
+    gap: 25px;
+    margin-bottom: 10px;
+}
+ 
+.menu-item {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden; /* عشان الصورة متطلعش برة الحواف المدورة */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+ 
+.menu-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* الصورة تتقص بدل ما تتمطط */
+}
+ 
+.menu-info {
+    padding: 18px;
+}
+ 
+.menu-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+ 
+.menu-title-row h4 {
+    font-size: 18px;
+}
+ 
+.price {
+    color: var(--color-gold);
+    font-weight: 700;
+}
+ 
+.menu-info p {
+    color: #777;
+    font-size: 0.95em;
+}
+ 
+ 
+/* ==========================================================================
+   6. قسم المعرض + الـ Lightbox (Gallery)
+   ========================================================================== */
+ 
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+ 
+.gallery-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer; /* شكل اليد لما تحط الماوس عليها، يوحي إنها قابلة للدوس */
+    transition: transform 0.3s;
+}
+ 
+.gallery-img:hover {
+    transform: scale(1.03); /* تكبير بسيط عند الـ hover */
+}
+ 
+/* نافذة تكبير الصورة - مخفية افتراضيًا */
+.lightbox {
+    display: none; /* الـ JS هيغيرها لـ flex لما نحتاج نظهرها */
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.lightbox.show {
+    display: flex;
+}
+ 
+.lightbox img {
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 8px;
+}
+ 
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    left: 35px;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+}
+ 
+ 
+/* ==========================================================================
+   7. قسم الحجز (Booking Form)
+   ========================================================================== */
+ 
+.booking-form {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+ 
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+ 
+.form-group {
+    flex: 1; /* كل حقل ياخد مساحة متساوية جنب التاني */
+    margin-bottom: 20px;
+}
+ 
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+ 
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1em;
+}
+ 
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+ 
+.form-feedback {
+    min-height: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+ 
+.form-feedback.error {
+    color: #c0392b;
+}
+ 
+.form-feedback.success {
+    color: #27ae60;
+}
+ 
+ 
+/* ==========================================================================
+   8. قسم التواصل (Contact)
+   ========================================================================== */
+ 
+.contact {
+    background: var(--color-dark);
+    color: #fff;
+    text-align: center;
+}
+ 
+.contact .section-title {
+    color: #fff;
+}
+ 
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+ 
+.contact-card i {
+    font-size: 28px;
+    color: var(--color-gold);
+    margin-bottom: 10px;
+}
+ 
+.contact-card h4 {
+    margin-bottom: 8px;
+}
+ 
+.social-links a {
+    display: inline-block;
+    color: #fff;
+    font-size: 22px;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+ 
+.social-links a:hover {
+    color: var(--color-gold);
+}
+ 
+ 
+/* ==========================================================================
+   9. الفوتر (Footer)
+   ========================================================================== */
+ 
+.footer {
+    background: #180f0c;
+    color: #aaa;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
+ 
+ 
+/* ==========================================================================
+   10. التجاوب مع الشاشات الصغيرة (Media Queries)
+   ------------------------------------------------------------------------
+   @media بيقول للمتصفح "لو عرض الشاشة أصغر من كذا، طبّق القواعد دي بس".
+   بنستخدمها عشان الموقع يبقى شغال كويس على الموبايل.
+   ========================================================================== */
+ 
+@media (max-width: 768px) {
+ 
+    /* نخفي القائمة الأصلية ونظهر زرار الهامبرجر بدالها */
+    .nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        left: 0;
+        background: var(--color-dark);
+        flex-direction: column;
+        padding: 20px;
+    }
+ 
+    /* الكلاس ده بيتضاف بالـ JS لما تدوس على زرار الهامبرجر */
+    .nav.show {
+        display: flex;
+    }
+ 
+    .menu-toggle {
+        display: flex;
+    }
+ 
+    .menu-grid,
+    .gallery-grid,
+    .contact-grid {
+        grid-template-columns: 1fr; /* عمود واحد بدل 3 على الموبايل */
+    }
+ 
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+ 
+    .home .title {
+        font-size: 2em;
+    }
+}
